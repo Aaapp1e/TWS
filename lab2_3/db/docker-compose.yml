@@ -1,0 +1,19 @@
+version: "3.9"
+services:
+  task1:
+    image: "postgres:13"
+    restart: 'no'
+    environment:
+      POSTGRES_PASSWORD: pass
+      POSTGRES_USER: itmo_user
+      POSTGRES_DB: lab_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./init_db.sql:/docker-entrypoint-initdb.d/init.sql
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 2G
+
